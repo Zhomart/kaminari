@@ -18,7 +18,8 @@ module Kaminari
       module ClassMethods
         def inherited(kls)
           super
-          kls.send(:include, Kaminari::MongoidExtension::Document.dup)
+          kls.ancestors.include?(Kaminari::MongoidExtension::Document) or
+            kls.send(:include, Kaminari::MongoidExtension::Document.dup)
         end
       end
     end
